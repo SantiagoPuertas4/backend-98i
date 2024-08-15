@@ -1,10 +1,9 @@
-import { internalError } from '../../../helpers/helper.js';
+import HttpCodes from 'http-status-codes';
+import { internalError } from '../../../helpers/helpers.js';
 import BlogModel from '../../../models/blogSchema.js';
 
 export class PostController {
   static async postBlog(req, res) {
-    console.log('Algo');
-
     const { body } = req;
 
     const newBlog = new BlogModel({

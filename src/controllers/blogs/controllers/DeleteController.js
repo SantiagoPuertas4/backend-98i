@@ -1,22 +1,22 @@
 import HttpCodes from 'http-status-codes';
-import { internalError } from '../../../helpers/helpers.js';
 import BlogModel from '../../../models/blogSchema.js';
+import { internalError } from '../../../helpers/helpers.js';
 
-export class PutController {
-  static async putBlog(req, res) {
+export class DeleteController {
+  static async deleteBlog(req, res) {
     const {
-      body,
       params: { id },
     } = req;
-
     try {
       const action = await BlogModel.updateOne(
         {
           _id: id,
+          isActive: true,
         },
-        body,
+        {
+          isActive: false,
+        },
       );
-
       if (action.matchedCount === 0) {
         res.status(HttpCodes.BAD_REQUEST).json({
           data: null,
@@ -24,17 +24,12 @@ export class PutController {
         });
         return;
       }
-
       res.json({
         data: null,
-        message: 'Blog actualizado correctamente',
+        message: 'Blog eliminado correctamente',
       });
     } catch (e) {
-      internalError(
-        res,
-        e,
-        'Ocurrio un error actualizando el recurso indicado',
-      );
+      internalError(res, e, 'Ocurrio un error eliminando el recurso indicado');
     }
   }
 }
