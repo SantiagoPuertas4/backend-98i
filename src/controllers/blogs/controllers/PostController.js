@@ -1,5 +1,5 @@
+import { internalError } from '../../../helpers/helper.js';
 import BlogModel from '../../../models/blogSchema.js';
-import HttpCodes from 'http-status-codes';
 
 export class PostController {
   static async postBlog(req, res) {
@@ -21,10 +21,7 @@ export class PostController {
         message: 'Blog guardado correctamente',
       });
     } catch (e) {
-      console.error(e);
-      res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({
-        message: 'Ocurrio un error al guardar el blog',
-      });
+      internalError(res, e, 'Ocurrio un error al guardar el blog');
     }
 
     res.json({
