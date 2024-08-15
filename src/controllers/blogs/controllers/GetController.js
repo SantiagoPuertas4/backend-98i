@@ -1,10 +1,12 @@
-import { internalError } from '../../../helpers/helper.js';
+import { internalError } from '../../../helpers/helpers.js';
 import BlogModel from '../../../models/blogSchema.js';
 
 export class GetController {
   static async getBlogs(_, res) {
     try {
-      const data = await BlogModel.find();
+      const data = await BlogModel.find({
+        isActive: true,
+      });
 
       const filteredData = data.map((blog) => {
         return {
