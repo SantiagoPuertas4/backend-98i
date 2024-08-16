@@ -23,6 +23,7 @@ export class PostController {
 
       const userInfo = {
         user: {
+          id: user._doc._id,
           firstname: user.firstname,
           lastname: user.lastname,
           username: user.username,
