@@ -22,9 +22,5 @@ export class PostController {
     } catch (e) {
       internalError(res, e, 'Ocurrio un error al guardar el blog');
     }
-
-    res.json({
-      message: 'Holiiii',
-    });
   }
 }
