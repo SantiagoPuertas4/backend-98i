@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 export const isAuthenticated = (req, res, next) => {
   const { headers } = req;
 
-  const authorizationHeader = headers.Authorization;
+  const authorizationHeader = headers.authorization;
 
   if (!authorizationHeader) {
     res.status(401).json({
@@ -13,7 +13,7 @@ export const isAuthenticated = (req, res, next) => {
     return;
   }
 
-  const token = authorizationHeader.split('')[1];
+  const token = authorizationHeader.split(' ')[1];
 
   try {
     const data = jwt.verify(token, process.env.SECRET_KEY);
