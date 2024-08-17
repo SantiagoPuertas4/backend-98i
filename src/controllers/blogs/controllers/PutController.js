@@ -1,6 +1,7 @@
 import HttpCodes from 'http-status-codes';
-import { internalError } from '../../../helpers/helpers.js';
+
 import BlogModel from '../../../models/blogSchema.js';
+import { internalError } from '../../../helpers/helpers.js';
 
 export class PutController {
   static async putBlog(req, res) {
@@ -8,6 +9,9 @@ export class PutController {
       body,
       params: { id },
     } = req;
+
+    // Si llegamos al controlador, body está validado
+    // y tiene los campos correspondientes
 
     try {
       const action = await BlogModel.updateOne(
@@ -33,7 +37,7 @@ export class PutController {
       internalError(
         res,
         e,
-        'Ocurrio un error actualizando el recurso indicado',
+        'Ocurrió un error actualizando el recurso indicado',
       );
     }
   }

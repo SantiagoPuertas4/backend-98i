@@ -15,7 +15,6 @@ export const isAuthenticated = (req, res, next) => {
   }
 
   const token = authorizationHeader.split(' ')[1];
-
   try {
     const data = jwt.verify(token, process.env.SECRET_KEY);
 

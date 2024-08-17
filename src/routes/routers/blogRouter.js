@@ -7,6 +7,7 @@ import { isAdmin } from '../../middlewares/isAdmin.js';
 
 export const blogRouter = express.Router();
 blogRouter.get('/', Blogs.GetController.getBlogs);
+blogRouter.get('/:id', Blogs.GetController.getBlog);
 
 blogRouter.post(
   '/',
@@ -18,7 +19,7 @@ blogRouter.post(
 );
 
 blogRouter.put(
-  '/',
+  '/:id',
   isAuthenticated,
   isAdmin,
   (req, res, next) =>
